@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
 @keyframes float {
   0%, 100% {
     transform: translate(-50%, -50%);
@@ -26,6 +32,57 @@
   }
 }
 
+@keyframes breathe {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+@keyframes ripple {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInScale {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200px 0;
+  }
+  100% {
+    background-position: calc(200px + 100%) 0;
+  }
+}
+
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
@@ -34,16 +91,40 @@
   animation: pulse 2s ease-in-out infinite;
 }
 
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+.animate-ripple {
+  animation: ripple 0.6s linear;
+}
+
+.animate-slideInUp {
+  animation: slideInUp 0.5s ease-out;
+}
+
+.animate-fadeInScale {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200px 100%;
+}
+
 .rotate-y-180 {
   transform: rotateY(180deg);
 }
 
 .game-card {
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 
 .game-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
 }
 
 .memory-card {
@@ -53,4 +134,169 @@
 
 .memory-card.flipped {
   transform: rotateY(180deg);
+}
+
+.glass-morphism {
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.zen-gradient {
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+}
+
+.ocean-gradient {
+  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+.forest-gradient {
+  background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+}
+
+.sunset-gradient {
+  background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+.aurora-gradient {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.card-hover {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:from-blue-600 hover:to-purple-700 hover:shadow-lg transform hover:-translate-y-1;
+}
+
+.btn-secondary {
+  @apply bg-white text-gray-700 px-6 py-3 rounded-xl font-medium border border-gray-200 transition-all duration-300 hover:bg-gray-50 hover:shadow-md transform hover:-translate-y-1;
+}
+
+.input-field {
+  @apply w-full p-4 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all duration-300;
+}
+
+.nav-item {
+  @apply flex flex-col items-center gap-1 p-3 rounded-xl transition-all duration-300 relative overflow-hidden;
+}
+
+.nav-item.active {
+  @apply text-blue-600 bg-blue-50;
+}
+
+.nav-item.active::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 3px;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+  border-radius: 0 0 4px 4px;
+}
+
+.progress-ring {
+  transition: stroke-dashoffset 0.35s;
+  transform: rotate(-90deg);
+  transform-origin: 50% 50%;
+}
+
+.meditation-orb {
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.8), transparent 50%),
+              radial-gradient(circle at 70% 70%, rgba(59, 130, 246, 0.6), transparent 50%),
+              linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  box-shadow: 0 0 50px rgba(102, 126, 234, 0.4),
+              inset 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+.audio-visualizer {
+  display: flex;
+  align-items: end;
+  gap: 2px;
+  height: 40px;
+}
+
+.audio-bar {
+  width: 3px;
+  background: linear-gradient(to top, #3b82f6, #8b5cf6);
+  border-radius: 2px;
+  animation: audioWave 1s ease-in-out infinite alternate;
+}
+
+.audio-bar:nth-child(2) { animation-delay: 0.1s; }
+.audio-bar:nth-child(3) { animation-delay: 0.2s; }
+.audio-bar:nth-child(4) { animation-delay: 0.3s; }
+.audio-bar:nth-child(5) { animation-delay: 0.4s; }
+
+@keyframes audioWave {
+  0% { height: 10px; }
+  100% { height: 40px; }
+}
+
+.game-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+@media (max-width: 768px) {
+  .game-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.floating-particles {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: floatParticle 20s infinite linear;
+}
+
+@keyframes floatParticle {
+  0% {
+    transform: translateY(100vh) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.scroll-smooth {
+  scroll-behavior: smooth;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backdrop-blur-strong {
+  backdrop-filter: blur(20px);
 }
